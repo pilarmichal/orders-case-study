@@ -1,1 +1,2 @@
-# orders-case-study
+# Orders
+This project is designed to showcase my skills in building a RESTful application for managing products and orders. It includes basic CRUD operations, order management with stock reservation, and follows best practices in API design and testing.
