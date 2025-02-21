@@ -22,6 +22,10 @@ public class ItemController {
 
     @PostMapping
     public Item createItem(@RequestBody Item item) {
+        if (item.getItemId() != null) {
+            throw new IllegalArgumentException("Item ID must be null");
+        }
+
         return this.itemRepository.save(item);
     }
 }
