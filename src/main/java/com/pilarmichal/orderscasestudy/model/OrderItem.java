@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 public class OrderItem {
 
     @Id
@@ -23,8 +22,4 @@ public class OrderItem {
 
     @Column(nullable = false)
     private int quantity;
-
-    public OrderItem() {
-        // Default constructor
-    }
 }
