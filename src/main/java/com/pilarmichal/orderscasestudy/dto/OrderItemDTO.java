@@ -10,7 +10,7 @@ public class OrderItemDTO {
     private int quantity;
 
     public OrderItemDTO(OrderItem orderItem) {
-        this.itemId = orderItem.getItem().getItemId(); // Extract only the ID
+        this.itemId = orderItem.getItem().getItemId();
         this.quantity = orderItem.getQuantity();
     }
 

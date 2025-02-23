@@ -86,9 +86,7 @@ class PurchaseOrderServiceTest {
 
         when(this.itemRepository.findById(1L)).thenReturn(Optional.of(this.item));
 
-        InsufficientQuantityException exception = assertThrows(InsufficientQuantityException.class, () -> {
-            this.purchaseOrderService.createOrder(orderItemDTOS);
-        });
+        InsufficientQuantityException exception = assertThrows(InsufficientQuantityException.class, () -> this.purchaseOrderService.createOrder(orderItemDTOS));
 
         assertNotNull(exception.getInsufficientItems());
         assertEquals(1, exception.getInsufficientItems().size());
@@ -132,9 +130,7 @@ class PurchaseOrderServiceTest {
 
         when(this.purchaseOrderRepository.findById(1L)).thenReturn(Optional.of(this.purchaseOrder));
 
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            this.purchaseOrderService.cancelPurchaseOrder(1L);
-        });
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> this.purchaseOrderService.cancelPurchaseOrder(1L));
 
         assertEquals("Order can not be cancelled", exception.getMessage());
 
@@ -157,7 +153,6 @@ class PurchaseOrderServiceTest {
 
     @Test
     void testExpirePurchaseOrders() {
-        // Mock the expired order
         PurchaseOrder expiredOrder = new PurchaseOrder();
         expiredOrder.setPurchaseOrderId(2L);
         expiredOrder.setOrderStatus(PurchaseOrderStatus.PENDING);
@@ -177,9 +172,7 @@ class PurchaseOrderServiceTest {
     void testGetPurchaseOrderNotFound() {
         when(this.purchaseOrderRepository.findById(1L)).thenReturn(Optional.empty());
 
-        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
-            this.purchaseOrderService.getPurchaseOrder(1L);
-        });
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> this.purchaseOrderService.getPurchaseOrder(1L));
 
         assertEquals("Order not found with id 1", exception.getMessage());
     }
